@@ -16,5 +16,4 @@
 .idea
 
 # Project specific
-main.go
 stdin.txt
