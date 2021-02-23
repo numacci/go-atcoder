@@ -63,14 +63,6 @@ func nextFloats(n int) []float64 {
 	return ret
 }
 
-func split(s string) []string {
-	ret := make([]string, len([]rune(s)))
-	for i, v := range []rune(s) {
-		ret[i] = string(v)
-	}
-	return ret
-}
-
 func out(x ...interface{}) {
 	fmt.Fprintln(w, x...)
 }

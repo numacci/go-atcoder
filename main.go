@@ -12,12 +12,6 @@ import (
 
 // solve implements code to solve the problem.
 func solve() {
-	a, b := nextInt(), nextInt()
-	s := next()
-
-	out("a =", a)
-	out("b =", b)
-	out("s =", s)
 }
 
 // do not edit main as it is just an entrypoint.
@@ -82,6 +76,11 @@ func nextFloats(n int) []float64 {
 	return ret
 }
 
+func out(x ...interface{}) {
+	fmt.Fprintln(w, x...)
+}
+
+// Type Utils
 func split(s string) []string {
 	ret := make([]string, len([]rune(s)))
 	for i, v := range []rune(s) {
@@ -90,11 +89,24 @@ func split(s string) []string {
 	return ret
 }
 
-func out(x ...interface{}) {
-	fmt.Fprintln(w, x)
+func join(x []string) string {
+	return strings.Join(x, "")
+}
+
+func strToInt(s string) int {
+	i, _ := strconv.Atoi(s)
+	return i
+}
+
+func intToStr(i int) string {
+	return strconv.Itoa(i)
 }
 
 // Math Utils
+const (
+	MOD = 1e9 + 7
+)
+
 func abs(a int) int {
 	if a < 0 {
 		a *= -1
@@ -504,7 +516,7 @@ func (pq *priorityQueue) Pop() interface{} {
 	old := *pq
 	n := len(old)
 	i := old[n-1]
-	old[n-1] = nil
+	old[n-1] = nil // to avoid memory leak
 	i.index = -1
 	*pq = old[0 : n-1]
 	return i.p
