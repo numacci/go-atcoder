@@ -22,6 +22,13 @@ func min(a, b int) int {
 	return b
 }
 
+func sum(a []int) (su int) {
+	for _, v := range a {
+		su += v
+	}
+	return
+}
+
 func gcd(a, b int) int {
 	for b != 0 {
 		a, b = b, a%b
@@ -57,4 +64,20 @@ func nextPermutation(x []int) bool {
 		r--
 	}
 	return true
+}
+
+func chmin(a *int, b int) bool {
+	if *a > b {
+		*a = b
+		return true
+	}
+	return false
+}
+
+func chmax(a *int, b int) bool {
+	if *a < b {
+		*a = b
+		return true
+	}
+	return false
 }

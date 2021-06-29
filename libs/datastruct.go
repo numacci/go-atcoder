@@ -6,32 +6,32 @@ import (
 	"strings"
 )
 
-// pair implementation
-type pair struct {
+// Pair implementation
+type Pair struct {
 	first  int
 	second int
 }
 
-func (p *pair) String() string {
+func (p *Pair) String() string {
 	return fmt.Sprintf("{%v, %v}", p.first, p.second)
 }
 
-// stack implementation
-type stack struct {
+// Stack implementation
+type Stack struct {
 	data []int
 	size int
 }
 
-func newStack(cap int) *stack {
-	return &stack{data: make([]int, 0, cap), size: 0}
+func newStack(cap int) *Stack {
+	return &Stack{data: make([]int, 0, cap), size: 0}
 }
 
-func (s *stack) push(n int) {
+func (s *Stack) push(n int) {
 	s.data = append(s.data, n)
 	s.size++
 }
 
-func (s *stack) pop() bool {
+func (s *Stack) pop() bool {
 	if s.isEmpty() {
 		return false
 	}
@@ -40,34 +40,34 @@ func (s *stack) pop() bool {
 	return true
 }
 
-func (s *stack) top() int {
+func (s *Stack) top() int {
 	return s.data[s.size-1]
 }
 
-func (s *stack) isEmpty() bool {
+func (s *Stack) isEmpty() bool {
 	return s.size == 0
 }
 
-func (s *stack) String() string {
+func (s *Stack) String() string {
 	return fmt.Sprint(s.data)
 }
 
-// queue implementation
-type queue struct {
+// Queue implementation
+type Queue struct {
 	data []int
 	size int
 }
 
-func newQueue(cap int) *queue {
-	return &queue{data: make([]int, 0, cap), size: 0}
+func newQueue(cap int) *Queue {
+	return &Queue{data: make([]int, 0, cap), size: 0}
 }
 
-func (q *queue) push(n int) {
+func (q *Queue) push(n int) {
 	q.data = append(q.data, n)
 	q.size++
 }
 
-func (q *queue) pop() bool {
+func (q *Queue) pop() bool {
 	if q.isEmpty() {
 		return false
 	}
@@ -76,34 +76,34 @@ func (q *queue) pop() bool {
 	return true
 }
 
-func (q *queue) front() int {
+func (q *Queue) front() int {
 	return q.data[0]
 }
 
-func (q *queue) isEmpty() bool {
+func (q *Queue) isEmpty() bool {
 	return q.size == 0
 }
 
-func (q *queue) String() string {
+func (q *Queue) String() string {
 	return fmt.Sprint(q.data)
 }
 
-// pairQueue implementation
-type pairQueue struct {
-	data []*pair
+// PairQueue implementation
+type PairQueue struct {
+	data []*Pair
 	size int
 }
 
-func newPairQueue(cap int) *pairQueue {
-	return &pairQueue{data: make([]*pair, 0, cap), size: 0}
+func newPairQueue(cap int) *PairQueue {
+	return &PairQueue{data: make([]*Pair, 0, cap), size: 0}
 }
 
-func (q *pairQueue) push(p *pair) {
+func (q *PairQueue) push(p *Pair) {
 	q.data = append(q.data, p)
 	q.size++
 }
 
-func (q *pairQueue) pop() bool {
+func (q *PairQueue) pop() bool {
 	if q.isEmpty() {
 		return false
 	}
@@ -113,41 +113,41 @@ func (q *pairQueue) pop() bool {
 	return true
 }
 
-func (q *pairQueue) front() *pair {
+func (q *PairQueue) front() *Pair {
 	return q.data[0]
 }
 
-func (q *pairQueue) isEmpty() bool {
+func (q *PairQueue) isEmpty() bool {
 	return q.size == 0
 }
 
-func (q *pairQueue) String() string {
+func (q *PairQueue) String() string {
 	return fmt.Sprint(q.data)
 }
 
-// set implementation
-type set struct {
+// Set implementation
+type Set struct {
 	data map[int]struct{}
 }
 
-func newSet() *set {
-	return &set{data: make(map[int]struct{})}
+func newSet() *Set {
+	return &Set{data: make(map[int]struct{})}
 }
 
-func (s *set) insert(n int) {
+func (s *Set) insert(n int) {
 	s.data[n] = struct{}{}
 }
 
-func (s *set) erase(n int) {
+func (s *Set) erase(n int) {
 	delete(s.data, n)
 }
 
-func (s *set) contains(n int) bool {
+func (s *Set) contains(n int) bool {
 	_, ret := s.data[n]
 	return ret
 }
 
-func (s *set) String() string {
+func (s *Set) String() string {
 	ret := make([]string, 0, len(s.data))
 	for k := range s.data {
 		k := strconv.Itoa(k)
@@ -156,18 +156,18 @@ func (s *set) String() string {
 	return "{" + strings.Join(ret, ", ") + "}"
 }
 
-// intHeap implementation
-type intHeap []int
+// IntHeap implementation
+type IntHeap []int
 
-func (h intHeap) Len() int           { return len(h) }
-func (h intHeap) Less(i, j int) bool { return h[i] < h[j] }
-func (h intHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+func (h IntHeap) Len() int           { return len(h) }
+func (h IntHeap) Less(i, j int) bool { return h[i] < h[j] }
+func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
 
-func (h *intHeap) Push(x interface{}) {
+func (h *IntHeap) Push(x interface{}) {
 	*h = append(*h, x.(int))
 }
 
-func (h *intHeap) Pop() interface{} {
+func (h *IntHeap) Pop() interface{} {
 	old := *h
 	n := len(old)
 	x := old[n-1]
@@ -175,11 +175,11 @@ func (h *intHeap) Pop() interface{} {
 	return x
 }
 
-// priorityQueue implementation
-type priorityQueue []*item
+// PriorityQueue implementation
+type PriorityQueue []*item
 
 type item struct {
-	p     *pair
+	p     *Pair
 	index int
 }
 
@@ -187,13 +187,13 @@ func (i *item) String() string {
 	return fmt.Sprint(i.p)
 }
 
-func (pq priorityQueue) Len() int           { return len(pq) }
-func (pq priorityQueue) Less(i, j int) bool { return pq[i].p.first < pq[j].p.first }
-func (pq priorityQueue) Swap(i, j int)      { pq[i], pq[j] = pq[j], pq[i] }
+func (pq PriorityQueue) Len() int           { return len(pq) }
+func (pq PriorityQueue) Less(i, j int) bool { return pq[i].p.first < pq[j].p.first }
+func (pq PriorityQueue) Swap(i, j int)      { pq[i], pq[j] = pq[j], pq[i] }
 
-func (pq *priorityQueue) Push(x interface{}) {
+func (pq *PriorityQueue) Push(x interface{}) {
 	n := len(*pq)
-	p := x.(*pair)
+	p := x.(*Pair)
 	i := &item{
 		p:     p,
 		index: n,
@@ -201,7 +201,7 @@ func (pq *priorityQueue) Push(x interface{}) {
 	*pq = append(*pq, i)
 }
 
-func (pq *priorityQueue) Pop() interface{} {
+func (pq *PriorityQueue) Pop() interface{} {
 	old := *pq
 	n := len(old)
 	i := old[n-1]
@@ -209,4 +209,61 @@ func (pq *priorityQueue) Pop() interface{} {
 	i.index = -1
 	*pq = old[0 : n-1]
 	return i.p
+}
+
+// UnionFind implementation
+type UnionFind struct {
+	par  []int
+	rank []int
+}
+
+// NewUnionFind initialize UnionFind
+func NewUnionFind(n int) *UnionFind {
+	uf := &UnionFind{
+		par:  make([]int, n),
+		rank: make([]int, n),
+	}
+	for i := 0; i < n; i++ {
+		uf.par[i] = -1
+	}
+	return uf
+}
+
+func (uf *UnionFind) Find(x int) int {
+	if uf.par[x] < 0 {
+		return x
+	} else {
+		uf.par[x] = uf.Find(uf.par[x])
+		return uf.par[x]
+	}
+}
+
+func (uf *UnionFind) Unite(x, y int) {
+	x = uf.Find(x)
+	y = uf.Find(y)
+	if x == y {
+		return
+	}
+
+	if uf.rank[x] < uf.rank[y] {
+		x, y = y, x
+	}
+	if uf.rank[x] == uf.rank[y] {
+		uf.rank[x]++
+	}
+
+	uf.par[x] += uf.par[y]
+	uf.par[y] = x
+}
+
+func (uf *UnionFind) Same(x, y int) bool {
+	return uf.Find(x) == uf.Find(y)
+}
+
+func (uf *UnionFind) Size(x int) int {
+	return -uf.par[uf.Find(x)]
+}
+
+func (uf *UnionFind) String() string {
+	return fmt.Sprintf("par = %v, rank = %v", uf.par, uf.rank)
 }

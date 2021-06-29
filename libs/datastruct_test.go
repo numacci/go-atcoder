@@ -84,11 +84,11 @@ func TestPairQueue(t *testing.T) {
 		t.Fatalf("True is expected, but %v\n", q.isEmpty())
 	}
 
-	q.push(&pair{1, 2})
+	q.push(&Pair{1, 2})
 	fmt.Println(q)
-	q.push(&pair{-3, 1})
+	q.push(&Pair{-3, 1})
 	fmt.Println(q)
-	q.push(&pair{-1, -4})
+	q.push(&Pair{-1, -4})
 	fmt.Println(q)
 
 	if q.isEmpty() {
@@ -98,21 +98,21 @@ func TestPairQueue(t *testing.T) {
 	p1 := q.front()
 	fmt.Println(q)
 	if p1.first != 1 || p1.second != 2 {
-		t.Fatalf("%v is expected, but %v\n", &pair{1, 2}, p1)
+		t.Fatalf("%v is expected, but %v\n", &Pair{1, 2}, p1)
 	}
 	q.pop()
 
 	p2 := q.front()
 	fmt.Println(q)
 	if p2.first != -3 || p2.second != 1 {
-		t.Fatalf("%v is expected, but %v\n", &pair{-3, 1}, p2)
+		t.Fatalf("%v is expected, but %v\n", &Pair{-3, 1}, p2)
 	}
 	q.pop()
 
 	p3 := q.front()
 	fmt.Println(q)
 	if p3.first != -1 || p3.second != -4 {
-		t.Fatalf("%v is expected, but %v\n", &pair{-1, -4}, p3)
+		t.Fatalf("%v is expected, but %v\n", &Pair{-1, -4}, p3)
 	}
 	q.pop()
 
@@ -154,7 +154,7 @@ func TestSet(t *testing.T) {
 }
 
 func TestIntHeap(t *testing.T) {
-	h := &intHeap{2, 1, 5}
+	h := &IntHeap{2, 1, 5}
 	heap.Init(h)
 	heap.Push(h, 3)
 	fmt.Println(*h)
@@ -173,11 +173,11 @@ func TestIntHeap(t *testing.T) {
 }
 
 func TestPriorityQueue(t *testing.T) {
-	pq := make(priorityQueue, 0, 1024)
+	pq := make(PriorityQueue, 0, 1024)
 	heap.Init(&pq)
-	heap.Push(&pq, &pair{first: 3, second: 1})
-	heap.Push(&pq, &pair{first: 10, second: -3})
-	heap.Push(&pq, &pair{first: 1, second: 4})
+	heap.Push(&pq, &Pair{first: 3, second: 1})
+	heap.Push(&pq, &Pair{first: 10, second: -3})
+	heap.Push(&pq, &Pair{first: 1, second: 4})
 	fmt.Println(pq)
 
 	if pq[0].p.first != 1 {
@@ -185,13 +185,13 @@ func TestPriorityQueue(t *testing.T) {
 	}
 
 	i := 0
-	expected := []*pair{
+	expected := []*Pair{
 		{1, 4},
 		{3, 1},
 		{10, -3},
 	}
 	for pq.Len() > 0 {
-		v := heap.Pop(&pq).(*pair)
+		v := heap.Pop(&pq).(*Pair)
 		if *v != *expected[i] {
 			t.Fatalf("%v is expected, but %v\n", expected[i], v)
 		}
